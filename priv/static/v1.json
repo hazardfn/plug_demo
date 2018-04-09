@@ -1,0 +1,119 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "An awesome API",
+    "version": "0.1.0",
+    "title": "Plug Demo"
+  },
+  "host": "localhost:4000",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "method",
+      "description": "All available methods"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "method"
+        ],
+        "summary": "Retrives a value from the database given a key",
+        "description": "",
+        "operationId": "/",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "key",
+            "type": "string",
+            "description": "Key",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "An unknown error ocurred"
+          },
+          "404": {
+            "description": "Key does not exist!"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "method"
+        ],
+        "summary": "Saves a key and value to the database",
+        "operationId": "/",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "key",
+            "type": "string",
+            "description": "Key",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "value",
+            "type": "string",
+            "description": "Value to write to the DB",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "An unknown error ocurred"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "text"
+        },
+        "key": {
+          "type": "string",
+          "format": "text"
+        },
+        "value": {
+          "type": "string",
+          "format": "text"
+        }
+      }
+    }
+  }
+}
