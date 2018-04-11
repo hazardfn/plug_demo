@@ -1,5 +1,4 @@
 defmodule PlugDemo.Application do
-  alias PlugDemo.Router
   use Application
 
   def start(_, _) do
@@ -8,8 +7,8 @@ defmodule PlugDemo.Application do
     children = [
       Plug.Adapters.Cowboy2.child_spec(
         scheme: :http,
-        plug: Router,
-        options: [port: 4000, max_connections: :infinity, acceptors: 200]
+        plug: PlugDemo.Router,
+        options: [port: 4000]
       )
     ]
 
