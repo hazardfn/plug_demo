@@ -10,4 +10,8 @@ defmodule PlugDemo.Router do
     to: PhoenixSwagger.Plug.SwaggerUI,
     init_opts: [otp_app: :plug_demo, swagger_file: "v1.json"]
   )
+
+  match _ do
+    send_resp(conn, 404, "oops")
+  end
 end
